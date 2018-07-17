@@ -1,15 +1,16 @@
 # bamazon
 
 ## Overview
-LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and Recognition Interface, LIRI is a Language Interpretation and Recognition Interface. LIRI is a command line node app that takes in parameters and gives back data.
+Bamazon is a node based CLI app that shows off CRUD MySQL manipulation of a database.  It starts with a database of 10 products and then allows the user to interact and modify the data as a customer and a manager.
 
 ## Demonstrates
 * NodeJS
 * MySQL
+* CRUD
 * NPM
 * Git
 
-## Challenge #1
+## Customer
 * Created a MySQL Database called bamazon.
 * Database is populated with around 10 different products. 
 * Application first displays all of the items available for sale. 
@@ -22,7 +23,7 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
 * Once the update goes through, show the customer the total cost of their purchase.
 
 
-## Challenge #2
+## Manager
 * App lists a set of menu options:
   * View Products for Sale
   * View Low Inventory
