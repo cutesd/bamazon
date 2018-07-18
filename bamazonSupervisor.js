@@ -22,7 +22,7 @@ var connection = mysql.createConnection({
 
 connection.connect(function (err) {
     if (err) throw err;
-    // console.log("connected as id " + connection.threadId + "\n");
+    // 
     updateDeptArr();
 });
 
@@ -30,7 +30,6 @@ connection.connect(function (err) {
 function menuOptions() {
     inquirer
         .prompt([
-            // Here we create a basic text prompt.
             {
                 type: "list",
                 message: "Choose:",
@@ -39,7 +38,6 @@ function menuOptions() {
             }
         ])
         .then(response => {
-            // 
             switch (response.choice) {
                 case 'View Product Sales by Department':
                     viewSalesByDept();
@@ -51,11 +49,10 @@ function menuOptions() {
         });
 }
 
-//prod, dept, price, qty
+//
 function deptPrompt() {
     inquirer
         .prompt([
-            // Here we create a basic text prompt.
             {
                 type: "input",
                 message: "Enter department name:",
@@ -76,7 +73,6 @@ function deptPrompt() {
 function prompt() {
     inquirer
         .prompt([
-            // Here we create a basic text prompt.
             {
                 type: "confirm",
                 message: "\nWould you like to make another selection?\n",
@@ -85,7 +81,6 @@ function prompt() {
             }
         ])
         .then(response => {
-            // 
             if (response.confirm) {
                 menuOptions();
             } else {
@@ -99,7 +94,7 @@ function updateDeptArr() {
     dept_arr = [];
     connection.query("SELECT department_name FROM departments", function (err, res) {
         if (err) throw err;
-        // Log all results of the SELECT statement
+        // 
         res.forEach(item => {
             dept_arr.push(item.department_name);
         });
@@ -128,7 +123,7 @@ function viewSalesByDept() {
         })
 }
 
-// If a manager selects Add New Product, it should allow the manager to add a completely new product to the store.
+// Supervisor adds new department
 function createDept(dept, overhead) {
     if (dept_arr.indexOf(dept) > -1) {
         console.log("\nYou have already created this department.\n");
@@ -153,13 +148,11 @@ function createDept(dept, overhead) {
 }
 
 function makeTable(h_arr, w_arr, _arr) {
-    // instantiate
     var table = new Table({
         head: h_arr,
         colWidths: w_arr
     });
 
-    // table is an Array, so you can `push`, `unshift`, `splice` and friends
     _arr.forEach(item => {
         table.push(item);
     });
