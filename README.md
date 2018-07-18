@@ -1,7 +1,7 @@
 # BAMAZON
 
 ## Overview
-Bamazon is a node based CLI app that shows off CRUD MySQL manipulation of a database.  It starts with a database of 10 products and then allows the user to interact and modify the data as a customer and a manager.
+Bamazon is a node based CLI app that shows off CRUD MySQL manipulation of a database.  It starts with a database of 10 products and then allows the user to interact and modify the data as a customer, manager, and supervisor.
 
 [Click HERE to view walkthrough video](https://drive.google.com/file/d/1N0MEfwRjpjb3NhA4ndGdQubkADJIN6_k/view)
 
