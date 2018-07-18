@@ -48,12 +48,35 @@ VALUES ("Wilson Evolution Indoor Game Basketball","Sports & Outdoors",48.95, 130
 INSERT INTO products (product_name, department_name, price, stock_quantity)
 VALUES ("Ray-Ban RB2132 New Wayfarer Sunglasses","Clothing, Shoes & Jewelry",121.00, 40);
 
+ALTER TABLE products
+ADD product_sales DECIMAL(10,2) NULL;
+
+-- UPDATE products SET product_sales=0;
+
 -- ALTER TABLE items
 -- ADD highest_bidder VARCHAR(255) NULL;
 
 -- ALTER TABLE items
 -- ADD created_by VARCHAR(255) NULL;
 
-
 SELECT * FROM products;
+
+-- Create a new MySQL table called departments. Your table should include the following columns:
+
+-- department_id
+-- department_name
+-- over_head_costs (A dummy number you set for each department)
+DROP TABLE departments;
+
+CREATE TABLE departments(
+	department_id INT NOT NULL AUTO_INCREMENT,
+    department_name VARCHAR(50) NOT NULL,
+    over_head_costs INT NULL,
+    PRIMARY KEY(department_id)
+);
+
+SELECT * FROM departments;
+
+
+
 

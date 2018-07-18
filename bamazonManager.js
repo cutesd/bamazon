@@ -3,6 +3,7 @@ var inquirer = require('inquirer');
 var Table = require('cli-table');
 
 var product_arr = [];
+var dept_arr = [];
 
 var connection = mysql.createConnection({
     host: "localhost",
@@ -21,7 +22,7 @@ var connection = mysql.createConnection({
 connection.connect(function (err) {
     if (err) throw err;
     // console.log("connected as id " + connection.threadId + "\n");
-    menuOptions();
+    updateDeptArr();
 });
 
 function menuOptions() {
@@ -30,7 +31,7 @@ function menuOptions() {
             // Here we create a basic text prompt.
             {
                 type: "list",
-                message: "Which item would you like to purchase?",
+                message: "Choose:",
                 choices: ['View Products for Sale', 'View Low Inventory', 'Add to Inventory', 'Add New Product'],
                 name: "choice"
             }
@@ -103,8 +104,22 @@ function addNewProduct() {
             }
         ])
         .then(response => {
-            createProduct(response.product, response.dept, parseFloat(response.price), parseInt(response.qty));
+
+            if (!checkDept(response.dept)) {
+                console.log("\nI'm sorry the department you entered does not exist.  Please re-enter the product.\n");
+                addNewProduct();
+            } else {
+                createProduct(response.product, response.dept, parseFloat(response.price), parseInt(response.qty));
+            }
         });
+}
+
+function checkDept(dept) {
+    if (dept_arr.indexOf(dept) === -1) {
+        return false;
+    } else {
+        return true;
+    }
 }
 
 function updateProductArr() {
@@ -212,6 +227,7 @@ function createProduct(prod, dept, price, qty) {
             stock_quantity: qty
         },
         function (err, res) {
+            if (err) throw console.log(err);
             prompt();
         }
     );
@@ -235,6 +251,18 @@ function showInventory() {
         //
         makeTable(['ID', 'Product Name', 'Department Name', 'Price', 'Stock Quantity'], [7, 65, 35, 17, 17], _arr);
         prompt();
+    });
+}
+
+function updateDeptArr() {
+    dept_arr = [];
+    connection.query("SELECT department_name FROM departments", function (err, res) {
+        if (err) throw err;
+        // Log all results of the SELECT statement
+        res.forEach(item => {
+            dept_arr.push(item.department_name);
+        });
+        menuOptions();
     });
 }
 
